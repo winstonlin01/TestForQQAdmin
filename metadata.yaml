@@ -3,4 +3,4 @@ display_name: strbot_plugin_TestForQQAdmin # 用于展示的名字，可以是�
 desc: AstrBot 插件示例。 # 插件简短描述
 version: v1.3.0 # 插件版本号。格式：v1.1.1 或者 v1.1
 author: Soulter # 作者
-repo: https://github.com/Soulter/helloworld # 插件的仓库地址
+repo: https://github.com/winstonlin01/TestForQQAdmin # 插件的仓库地址
