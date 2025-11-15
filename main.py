@@ -24,9 +24,10 @@ class MyPlugin(Star):
             info = await event.bot.get_group_member_info(
             group_id=int(group_id), user_id=int(user_id), no_cache=True
             )
-            role = info.get("role", "unknown")
+            
         except Exception:
             return 
+        role = info.get("role", "unknown")
         logger.info(message_chain)
         yield event.plain_result(f"Hello, {user_name}, 你是{role}!") # 发送一条纯文本消息
 
