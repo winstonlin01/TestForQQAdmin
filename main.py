@@ -1,6 +1,9 @@
 from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
 from astrbot.api.star import Context, Star, register
 from astrbot.api import logger
+from astrbot.core.platform.sources.aiocqhttp.aiocqhttp_message_event import (
+    AiocqhttpMessageEvent,
+)
 
 @register("helloworld", "YourName", "一个简单的 Hello World 插件", "1.0.0")
 class MyPlugin(Star):
@@ -17,8 +20,15 @@ class MyPlugin(Star):
         user_name = event.get_sender_name()
         message_str = event.message_str # 用户发的纯文本消息字符串
         message_chain = event.get_messages() # 用户所发的消息的消息链 # from astrbot.api.message_components import *
+        try:
+            info = await event.bot.get_group_member_info(
+            group_id=int(group_id), user_id=int(user_id), no_cache=True
+            )
+            role = info.get("role", "unknown")
+        except Exception:
+            return 
         logger.info(message_chain)
-        yield event.plain_result(f"Hello, {user_name}, 你发了 {message_str}!") # 发送一条纯文本消息
+        yield event.plain_result(f"Hello, {user_name}, 你是{role}!") # 发送一条纯文本消息
 
     async def terminate(self):
         """可选择实现异步的插件销毁方法，当插件被卸载/停用时会调用。"""
