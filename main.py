@@ -21,6 +21,7 @@ class MyPlugin(Star):
         message_str = event.message_str # 用户发的纯文本消息字符串
         message_chain = event.get_messages() # 用户所发的消息的消息链 # from astrbot.api.message_components import *
         role=""
+        user_name=""
         try:
             info = await event.bot.get_group_member_info(
             group_id=int(group_id), user_id=int(user_id), no_cache=True
@@ -28,7 +29,7 @@ class MyPlugin(Star):
             role = info.get("role", "unknown")
         except Exception:
             pass
-        user_name=""
+        
         
         logger.info(message_chain)
         yield event.plain_result(f"Hello, {user_name}, 你是{role}!") # 发送一条纯文本消息
