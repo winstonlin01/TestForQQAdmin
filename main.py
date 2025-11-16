@@ -29,9 +29,6 @@ class MyPlugin(Star):
             role = info.get("role", "unknown")
         except Exception:
             pass
-        
-        
-        logger.info(message_chain)
         yield event.plain_result(f"Hello, {user_name}, 你是{role}!") # 发送一条纯文本消息
 
     async def terminate(self):
