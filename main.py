@@ -1,4 +1,3 @@
-import re
 from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
 from astrbot.api.platform import AstrBotMessage
 from astrbot.api.star import Context, Star, register
